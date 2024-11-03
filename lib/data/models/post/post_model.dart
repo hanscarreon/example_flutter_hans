@@ -16,5 +16,6 @@ class PostModel extends PostEntity {
   Map<String, dynamic> toJson() => {
         'title': title,
         'body': body,
+        'userId': userId,
       };
 }

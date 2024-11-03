@@ -20,6 +20,10 @@ class PostApiClient {
       '$baseUrl/posts',
       data: post.toJson(),
     );
+
+    print(post.title);
+    print(post.body);
+    print(response.data);
     return PostModel.fromJson(response.data);
   }
 }

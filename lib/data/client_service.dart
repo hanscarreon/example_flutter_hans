@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:example_flutter_hans/data/client/post_client.dart';
 import 'package:example_flutter_hans/data/data_source/post_repository_impl.dart';
 import 'package:example_flutter_hans/domain/repository/post_repository.dart';
+import 'package:example_flutter_hans/presentation/bloc/post/create_post/create_post_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -17,5 +18,8 @@ void setupDependencies() {
   getIt.registerLazySingleton<PostRepository>(
       () => PostRepositoryImpl(getIt<PostApiClient>()));
 
-  // Add other dependencies similarly
+
+  // Bloc
+  getIt.registerFactory<CreatePostBloc>(
+      () => CreatePostBloc(getIt<PostRepository>()));
 }

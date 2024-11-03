@@ -1,11 +1,10 @@
-import 'package:example_flutter_hans/core/routes/app_route.dart';
 import 'package:example_flutter_hans/presentation/views/post/create_post/create_post_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class LandingScreen extends StatelessWidget {
   static const String routeName = '/';
-  const LandingScreen({Key? key}) : super(key: key);
+  const LandingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
