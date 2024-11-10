@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget with AppTheme {
       routerConfig: router,
       title: 'Flutter Demo',
       theme: lightTheme,
-      darkTheme: darkTheme,
+      themeMode: ThemeMode.system,
     );
   }
 }

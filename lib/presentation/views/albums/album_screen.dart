@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
 
-class PostScreenTab extends StatelessWidget {
-  const PostScreenTab({super.key});
+class AlbumScreen extends StatelessWidget {
+  static const String routeName ='/album';
+  const AlbumScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

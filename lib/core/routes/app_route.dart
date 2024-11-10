@@ -1,7 +1,5 @@
-import 'package:example_flutter_hans/presentation/bloc/post/create_post/create_post_bloc.dart';
-import 'package:example_flutter_hans/presentation/views/landing/landing_screen.dart';
-import 'package:example_flutter_hans/presentation/views/post/create_post/create_post_screen.dart';
-import 'package:example_flutter_hans/presentation/views/post/post_list/post_list_screen.dart';
+import 'package:example_flutter_hans/core/bloc/export_bloc.dart';
+import 'package:example_flutter_hans/core/routes/export_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -12,13 +10,16 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: LandingScreen.routeName,
       builder: (BuildContext context, GoRouterState state) {
-        return const LandingScreen();
+        return LandingScreen();
       },
     ),
     GoRoute(
       path: PostListScreen.routeName,
       builder: (BuildContext context, GoRouterState state) {
-        return const PostListScreen();
+        return BlocProvider(
+          create: (context) => GetIt.I<FetchPostBloc>(),
+          child: const PostListScreen(),
+        );
       },
     ),
     GoRoute(
@@ -26,8 +27,14 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return BlocProvider(
           create: (context) => GetIt.I<CreatePostBloc>(),
-          child: const PostCreateScreen(),
+          child: PostCreateScreen(),
         );
+      },
+    ),
+    GoRoute(
+      path: AlbumScreen.routeName,
+      builder: (BuildContext context, GoRouterState state) {
+        return const AlbumScreen();
       },
     ),
   ],

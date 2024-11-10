@@ -20,7 +20,7 @@ class AppInputWidget extends StatelessWidget {
     return Column(
       children: [
         Text(label),
-        const SizedBox(height: 16),
+        const SizedBox(height: 8),
         TextFormField(
           forceErrorText: forceErrorText,
           controller: textEditingController,
@@ -29,6 +29,7 @@ class AppInputWidget extends StatelessWidget {
           ),
           onChanged: onChanged,
         ),
+        const SizedBox(height: 12),
       ],
     );
   }
