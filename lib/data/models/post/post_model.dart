@@ -18,4 +18,16 @@ class PostModel extends PostEntity {
         'body': body,
         'userId': userId,
       };
+
+  factory PostModel.mock({
+    String? title,
+    String? body,
+    int? userId,
+  }) {
+    return PostModel(
+      title: title ?? 'title',
+      body: body ?? 'body',
+      userId: userId ?? 1,
+    );
+  }
 }
