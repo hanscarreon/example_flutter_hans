@@ -6,6 +6,7 @@ class AppInputWidget extends StatelessWidget {
   final String? forceErrorText;
   final Function(String value)? onChanged;
   final TextEditingController? textEditingController;
+  final Key? fieldKey;
   const AppInputWidget({
     super.key,
     required this.label,
@@ -13,6 +14,7 @@ class AppInputWidget extends StatelessWidget {
     this.forceErrorText,
     this.onChanged,
     this.textEditingController,
+    this.fieldKey,
   });
 
   @override
@@ -22,6 +24,7 @@ class AppInputWidget extends StatelessWidget {
         Text(label),
         const SizedBox(height: 8),
         TextFormField(
+          key: fieldKey,
           forceErrorText: forceErrorText,
           controller: textEditingController,
           decoration: InputDecoration(

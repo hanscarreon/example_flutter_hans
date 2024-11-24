@@ -1,5 +1,6 @@
 import 'package:example_flutter_hans/core/bloc/export_bloc.dart';
 import 'package:example_flutter_hans/core/routes/export_route.dart';
+import 'package:example_flutter_hans/presentation/views/carousel/example_carousel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -7,6 +8,12 @@ import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
+    GoRoute(
+      path: ExampleCarousel.routeName,
+      builder: (BuildContext context, GoRouterState state) {
+        return const ExampleCarousel();
+      },
+    ),
     GoRoute(
       path: LandingScreen.routeName,
       builder: (BuildContext context, GoRouterState state) {

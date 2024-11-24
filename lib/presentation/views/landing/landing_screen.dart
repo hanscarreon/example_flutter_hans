@@ -2,6 +2,7 @@ import 'package:example_flutter_hans/core/constant/app_colors.dart';
 import 'package:example_flutter_hans/core/constant/app_styles.dart';
 import 'package:example_flutter_hans/core/routes/export_route.dart';
 import 'package:example_flutter_hans/core/util/widget_extension.dart';
+import 'package:example_flutter_hans/presentation/views/carousel/example_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +18,28 @@ class LandingScreen extends StatelessWidget with AppStyles, AppColor {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ElevatedButton(
+              onPressed: () {
+                context.go(ExampleCarousel.routeName);
+              },
+              child: Text(
+                'Carousel',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                side: BorderSide(width: 4, color: Colors.red),
+              ),
+              onPressed: () {
+                print("user is logging in");
+              }, // add your function here
+              child: Text(
+                'Login',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
             ElevatedButton(
               onPressed: () {
                 context.go(PostCreateScreen.routeName);

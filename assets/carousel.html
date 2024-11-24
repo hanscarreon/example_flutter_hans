@@ -1,0 +1,332 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:;">
+
+    <title>Document</title>
+
+    <style>
+      body {
+        height: 600px;
+        margin: 0;
+        display: grid;
+        grid-template-rows: 500px 100px;
+        grid-template-columns: repeat(var(--img-len), 1fr);
+        align-items: center;
+        justify-items: center;
+      }
+
+      main#carousel {
+        grid-row: 1 / 2;
+        grid-column: 1 / var(--img-len);
+        width: 100vw;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        perspective: 600px;
+        --items: var(--img-len);
+        --middle: calc(var(--img-len) / 2);
+        --position: 1;
+        pointer-events: none;
+      }
+
+      img.item {
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        --r: calc(var(--position) - var(--offset));
+        --abs: max(calc(var(--r) * -1), var(--r));
+        transition: all 0.25s linear;
+        transform: rotateY(calc(-10deg * var(--r)))
+          translateX(calc(-300px * var(--r)));
+        z-index: calc((var(--position) - var(--abs)));
+      }
+
+      img.item.active {
+        transform: scale(1.5) translateX(0) rotateY(0);
+        z-index: var(--img-len);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      img.item:nth-of-type(n) {
+        --offset: n;
+      }
+
+      button#left {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        justify-self: center;
+      }
+
+      button#right {
+        grid-column: var(--img-len) / calc(var(--img-len) + 1);
+        grid-row: 2 / 3;
+        justify-self: center;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="left">Left</button>
+    <main id="carousel"></main>
+    <button id="right">Right</button>
+  </body>
+  <script>
+    const images = [
+      'assets/MCC_MFREE_MASTERCARD.png',
+      'assets/MCC_PLATINUM_MASTERCARD.png',
+      'assets/MCC_TRAVEL_VISA_PLATINUM.png',
+      'assets/MCC_WORLD_MASTERCARD.png',
+    ];
+    const body = document.body;
+    const carousel = document.getElementById('carousel');
+    const leftButton = document.getElementById('left');
+    const rightButton = document.getElementById('right');
+    let position = 1;
+
+    body.style.setProperty('--img-len', images.length);
+
+    images.forEach((image, index) => {
+      const img = document.createElement('img');
+      img.classList.add('item');
+      img.src = image;
+      img.alt = `Image ${index + 1}`;
+      img.style.setProperty('--offset', index + 1);
+      if (index === 0) img.classList.add('active');
+      carousel.appendChild(img);
+    });
+
+    leftButton.addEventListener('click', () => {
+      position = Math.max(position - 1, 1);
+      carousel.style.setProperty('--position', position);
+      updateCarousel();
+    });
+
+    rightButton.addEventListener('click', () => {
+      position = Math.min(position + 1, images.length);
+      carousel.style.setProperty('--position', position);
+      updateCarousel();
+    });
+
+    function updateCarousel() {
+      const images = carousel.querySelectorAll('img');
+      images.forEach((img) => img.classList.remove('active'));
+      images[position - 1].classList.add('active');
+    }
+  </script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel</title>
+    <style>
+      body {
+        height: 600px;
+        margin: 0;
+        display: grid;
+        grid-template-rows: 500px 100px;
+        grid-template-columns: repeat(var(--img-len), 1fr);
+        align-items: center;
+        justify-items: center;
+      }
+
+      main#carousel {
+        grid-row: 1 / 2;
+        grid-column: 1 / var(--img-len);
+        width: 100vw;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        perspective: 600px;
+        --items: var(--img-len);
+        --middle: calc(var(--img-len) / 2);
+        --position: 1;
+        pointer-events: none;
+      }
+
+      img.item {
+        position: absolute;
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        --r: calc(var(--position) - var(--offset));
+        --abs: max(calc(var(--r) * -1), var(--r));
+        transition: all 0.25s linear;
+        transform: rotateY(calc(-10deg * var(--r)))
+          translateX(calc(-300px * var(--r)));
+        z-index: calc((var(--position) - var(--abs)));
+      }
+
+      img.item.active {
+        transform: scale(1.5) translateX(0) rotateY(0);
+        z-index: var(--img-len);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      }
+
+      img.item:nth-of-type(n) {
+        --offset: n;
+      }
+
+      button#left {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        justify-self: center;
+      }
+
+      button#right {
+        grid-column: var(--img-len) / calc(var(--img-len) + 1);
+        grid-row: 2 / 3;
+        justify-self: center;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="left">Left</button>
+    <main id="carousel"></main>
+    <button id="right">Right</button>
+
+    <script>
+      // const images = [
+      //   'http://localhost:8080/assets/assets/MCC_MFREE_MASTERCARD.png',
+      //   'http://localhost:8080/assets/assets/MCC_PLATINUM_MASTERCARD.png',
+      //   'http://localhost:8080/assets/assets/MCC_TRAVEL_VISA_PLATINUM.png',
+      //   'http://localhost:8080/assets/assets/MCC_WORLD_MASTERCARD.png',
+      // ];
+      // const body = document.body;
+      // const carousel = document.getElementById('carousel');
+      // const leftButton = document.getElementById('left');
+      // const rightButton = document.getElementById('right');
+      // let position = 1;
+
+      // body.style.setProperty('--img-len', images.length);
+
+      // images.forEach((image, index) => {
+      //   const img = document.createElement('img');
+      //   img.classList.add('item');
+      //   img.src = image;
+      //   img.alt = `Image ${index + 1}`;
+      //   img.style.setProperty('--offset', index + 1);
+      //   if (index === 0) img.classList.add('active');
+      //   carousel.appendChild(img);
+      // });
+
+      // leftButton.addEventListener('click', () => {
+      //   position = Math.max(position - 1, 1);
+      //   carousel.style.setProperty('--position', position);
+      //   updateCarousel();
+      // });
+
+      // rightButton.addEventListener('click', () => {
+      //   position = Math.min(position + 1, images.length);
+      //   carousel.style.setProperty('--position', position);
+      //   updateCarousel();
+      // });
+
+      // function updateCarousel() {
+      //   const images = carousel.querySelectorAll('img');
+      //   images.forEach((img) => img.classList.remove('active'));
+      //   images[position - 1].classList.add('active');
+      // }
+
+      console.log('Carousel HTML loaded');
+
+      function testLog(betlog) {
+        console.log('test', betlog);
+      }
+
+      function startCarousel(imagesList) {
+        const images = JSON.parse(imagesList);
+        console.log('test', images);
+        const body = document.body;
+        const carousel = document.getElementById('carousel');
+        const leftButton = document.getElementById('left');
+        const rightButton = document.getElementById('right');
+        let position = 1;
+
+        body.style.setProperty('--img-len', images.length);
+
+        images.forEach((image, index) => {
+          const img = document.createElement('img');
+          img.classList.add('item');
+          img.src = image;
+          img.alt = `Image ${index + 1}`;
+          img.style.setProperty('--offset', index + 1);
+          if (index === 0) img.classList.add('active');
+          carousel.appendChild(img);
+        });
+
+        leftButton.addEventListener('click', () => {
+          position = Math.max(position - 1, 1);
+          carousel.style.setProperty('--position', position);
+          updateCarousel();
+        });
+
+        rightButton.addEventListener('click', () => {
+          position = Math.min(position + 1, images.length);
+          carousel.style.setProperty('--position', position);
+          updateCarousel();
+        });
+
+        function updateCarousel() {
+          const images = carousel.querySelectorAll('img');
+          images.forEach((img) => img.classList.remove('active'));
+          images[position - 1].classList.add('active');
+        }
+      }
+
+      function initCarousel(images) {
+        print('test', images);
+        // const body = document.body;
+        // const carousel = document.getElementById('carousel');
+        // const leftButton = document.getElementById('left');
+        // const rightButton = document.getElementById('right');
+        // let position = 1;
+
+        // body.style.setProperty('--img-len', images.length);
+
+        // images.forEach((image, index) => {
+        //   const img = document.createElement('img');
+        //   img.classList.add('item');
+        //   img.src = image;
+        //   img.alt = `Image ${index + 1}`;
+        //   img.style.setProperty('--offset', index + 1);
+        //   if (index === 0) img.classList.add('active');
+        //   carousel.appendChild(img);
+        // });
+
+        // leftButton.addEventListener('click', () => {
+        //   position = Math.max(position - 1, 1);
+        //   carousel.style.setProperty('--position', position);
+        //   updateCarousel();
+        // });
+
+        // rightButton.addEventListener('click', () => {
+        //   position = Math.min(position + 1, images.length);
+        //   carousel.style.setProperty('--position', position);
+        //   updateCarousel();
+        // });
+
+        // function updateCarousel() {
+        //   const images = carousel.querySelectorAll('img');
+        //   images.forEach((img) => img.classList.remove('active'));
+        //   images[position - 1].classList.add('active');
+        // }
+      }
+    </script>
+  </body>
+</html>

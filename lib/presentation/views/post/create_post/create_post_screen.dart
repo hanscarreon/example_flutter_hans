@@ -18,6 +18,7 @@ class PostCreateScreen extends StatelessWidget with AppStyles {
     final TextEditingController titleCtrl = TextEditingController();
     final TextEditingController bodyCtrl = TextEditingController();
     return Scaffold(
+      backgroundColor: Colors.amber[50],
       body: ListView(
         padding: screenPadding,
         children: [
@@ -31,34 +32,49 @@ class PostCreateScreen extends StatelessWidget with AppStyles {
               },
               bloc: postBloc,
               builder: (context, state) {
-                return Column(
-                  children: [
-                    AppInputWidget(
-                      label: "title",
-                      textEditingController: titleCtrl,
-                    ),
-                    AppInputWidget(
-                      label: "body",
-                      textEditingController: bodyCtrl,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        postBloc.add(
-                          OnCreatePostevent(
-                            post: PostModel(
-                              title: titleCtrl.text,
-                              body: bodyCtrl.text,
-                              userId: 1,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        'submit',
-                        style: Theme.of(context).textTheme.titleMedium,
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(" kabulbulan na title form"),
+                      AppInputWidget(
+                        fieldKey: const Key('titleTextField'),
+                        label: "title",
+                        textEditingController: titleCtrl,
                       ),
-                    )
-                  ],
+                      AppInputWidget(
+                        fieldKey: const Key('bodyTextField'),
+                        label: "body",
+                        textEditingController: bodyCtrl,
+                      ),
+                      ElevatedButton(
+                        key: const Key('submtButton'),
+                        onPressed: () {
+                          print(titleCtrl.text);
+                          print(bodyCtrl.text);
+
+                          // postBloc.add(
+                          //   OnCreatePostevent(
+                          //     post: PostModel(
+                          //       title: titleCtrl.text,
+                          //       body: bodyCtrl.text,
+                          //       userId: 1,
+                          //     ),
+                          //   ),
+                          // );
+                        },
+                        child: Text(
+                          'submit',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ),
+                      Text(titleCtrl.text ?? ''),
+                    ],
+                  ),
                 );
               }),
         ],
